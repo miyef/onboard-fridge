@@ -4,5 +4,9 @@
   "main": "index.js",
   "repository": "https://github.com/miyef/onboard-fridge",
   "author": "Gandem <nayef.ghattas@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^3.19.0",
+    "eslint-config-airbnb-base": "^11.1.3"
+  }
 }
