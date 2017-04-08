@@ -1,0 +1,8 @@
+{
+  "name": "onboard-fridge",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/miyef/onboard-fridge",
+  "author": "Gandem <nayef.ghattas@gmail.com>",
+  "license": "MIT"
+}
