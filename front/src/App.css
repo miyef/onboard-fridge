@@ -1,0 +1,17 @@
+.App {
+    font-size: 16px;
+}
+input {
+    font-size: inherit;
+    font-family: inherit;
+    border-style: none;
+    height: 20px;
+}
+
+div {
+    padding: 0px;
+}
+
+#filterBarDiv > * {
+    vertical-align:middle;
+}
