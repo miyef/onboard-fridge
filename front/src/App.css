@@ -12,6 +12,6 @@ div {
     padding: 0px;
 }
 
-#filterBarDiv > * {
+.vertical-align > * {
     vertical-align:middle;
 }
