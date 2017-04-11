@@ -1,6 +1,4 @@
 import React from 'react';
-import moment from 'moment'
-
 
 export default (props) => {
     return <div style={{ borderStyle :'solid',
@@ -17,7 +15,7 @@ export default (props) => {
             }}> { props.ingredient.name } </span>
             <span style={{
                 width : '73px'
-            }} > { moment().format('D/M/YYYY') } </span>
+            }} > { props.ingredient.date.format('D/M/YYYY') } </span>
             <span style={{
                 width : '150px'
             }}> { props.ingredient.tags.toString() } </span>

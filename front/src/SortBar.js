@@ -22,15 +22,8 @@ const ArrowSelector  = (props) =>{
             </div>;
 }
 
-export default class SortBar extends Component {
+export default (props) => {
 
-    constructor(props){
-        super(props);
-        this.state = { name : { 'up' : 0, 'down' : 0 },
-            date : { 'up' : 0, 'down' : 0 } }
-    }
-
-    render() {
         return <div style={{ borderStyle :'none',
             margin :'10px 13px 0px 13px', padding : '10px 10px 0px 10px', paddingLeft:'5%', display:'flex',
             justifyContent : 'space-between' }}>
@@ -42,12 +35,12 @@ export default class SortBar extends Component {
             }}>
                 <div style={{
                     width : '100px', display : 'flex', alignItems : 'center'
-                }}><span>Name</span> <ArrowSelector property="name" toggleSort={this.toggleSort} state={this.state}/>
+                }}><span>Name</span> <ArrowSelector property="name" toggleSort={props.toggleSort} state={props.state}/>
                 </div>
 
                 <div style={{
                     width : '73px', display : 'flex', alignItems : 'center'
-                }}> <span>Date</span> <ArrowSelector property="date" toggleSort={this.toggleSort} state={this.state}/>
+                }}> <span>Date</span> <ArrowSelector property="date" toggleSort={props.toggleSort} state={props.state}/>
                 </div>
 
                 <span style={{
@@ -58,15 +51,4 @@ export default class SortBar extends Component {
                 width : '25px'
             }} > </span>
         </div>
-    }
-
-    toggleSort = (e) => {
-        console.log(e.target.className + " " + e.target.getAttribute("property"))
-        const property = e.target.getAttribute("property");
-        const className = e.target.className;
-        const state = { name : { 'up' : 0, 'down' : 0 },
-            date : { 'up' : 0, 'down' : 0 } };
-        state[property][className] = this.state[property][className] ? 0 : 1;
-        this.setState(state);
-    }
 }
