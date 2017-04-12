@@ -110,3 +110,6 @@ jspm_packages
 
 # Compiled app files
 lib
+
+# .env file
+.env
