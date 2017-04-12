@@ -5,6 +5,8 @@ import compress from 'koa-compress';
 import helmet from 'koa-helmet';
 import cors from 'kcors';
 
+import router from './routes';
+
 import { config } from 'dotenv';
 
 config();
@@ -19,9 +21,7 @@ app.use(bodyParser());
 app.use(helmet());
 app.use(cors());
 
-app.use((ctx) => {
-    ctx.body = 'Hello World';
-});
+app.use(router.routes());
 
 debug('Starting server on port 3000');
 app.listen(3000);
