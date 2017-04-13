@@ -3,17 +3,17 @@ import React, { Component } from 'react';
 
 const ArrowSelector  = (props) =>{
 
-    const arrowUpStyle = {  width : '25px', marginBottom : '-15px'}
-    const arrowDownStyle = { width : '25px' }
+    const arrowUpStyle = {  width : '25px', marginBottom : '-15px'};
+    const arrowDownStyle = { width : '25px' };
 
     return <div style={ {  width : '25px', marginLeft : '5px'}} >
-                <img src={ props.state[props.property]["up"] === 1 ? "./arrow-expand-down-active.png": "./arrow-expand-down.png"}
+                <img src={ props.sortBy === `${props.property}up` ? "./arrow-expand-down-active.png": "./arrow-expand-down.png"}
                      style={arrowUpStyle}
                      className="up" onClick={ props.toggleSort }
                      property={ props.property }
                     />
 
-                <img src={props.state[props.property]["down"] === 1 ? "./arrow-expand-active.png": "./arrow-expand.png"}
+                <img src={props.sortBy === `${props.property}down` ? "./arrow-expand-active.png": "./arrow-expand.png"}
                      style={arrowDownStyle}
                      className="down" onClick={ props.toggleSort }
                      property={ props.property }
@@ -35,12 +35,12 @@ export default (props) => {
             }}>
                 <div style={{
                     width : '100px', display : 'flex', alignItems : 'center'
-                }}><span>Name</span> <ArrowSelector property="name" toggleSort={props.toggleSort} state={props.state}/>
+                }}><span>Name</span> <ArrowSelector property="name" toggleSort={props.toggleSort} sortBy={props.sortBy}/>
                 </div>
 
                 <div style={{
                     width : '73px', display : 'flex', alignItems : 'center'
-                }}> <span>Date</span> <ArrowSelector property="date" toggleSort={props.toggleSort} state={props.state}/>
+                }}> <span>Date</span> <ArrowSelector property="date" toggleSort={props.toggleSort} sortBy={props.sortBy}/>
                 </div>
 
                 <span style={{

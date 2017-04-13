@@ -1,7 +1,12 @@
 import React, {Component} from 'react';
 import Fuse from 'fuse.js';
-import moment from 'moment'
+import moment from 'moment';
+import FilterBar from './FilterBar';
+import IngredientItem from './IngredientItem';
+import AddButton from './AddButton';
+import SortBar from './SortBar';
 
+// For fuse
 const options = {
     shouldSort: false,
     threshold: 0.4,
@@ -16,10 +21,14 @@ const options = {
 };
 
 
-import FilterBar from './FilterBar';
-import IngredientItem from './IngredientItem';
-import AddButton from './AddButton';
-import SortBar from './SortBar';
+const sort = (array, property, reverse) => {
+    if (reverse) {
+        array = array.sort((val1, val2)=>val1[property] > val2[property]);
+    } else {
+        array = array.sort((val1, val2)=>val1[property] < val2[property]);
+    }
+    return array;
+}
 
 class IngredientPage extends Component {
     constructor(props) {
@@ -32,8 +41,7 @@ class IngredientPage extends Component {
                 {name: "Pizza Crust", tags:['Pizza', 'Main'],  date : moment([2012, 0, 11])}
             ],
             filter : "",
-            name : { 'up' : 0, 'down' : 0 },
-            date : { 'up' : 0, 'down' : 0 }
+            sortBy : null
         }
     }
     render() {
@@ -47,7 +55,7 @@ class IngredientPage extends Component {
                     <FilterBar updateFilter={ this.updateFilter } />
                     <AddButton/>
                 </div>
-                <SortBar toggleSort={ this.toggleSort } state={ this.state }/>
+                <SortBar toggleSort={ this.toggleSort } sortBy={ this.state.sortBy }/>
                 { this.displayIngredients(this.state.filter) }
             </div>);
     }
@@ -60,17 +68,22 @@ class IngredientPage extends Component {
         // we use .slice() to copy the array, copy which will be sorted (you don't want to modify the state).
         const result = filter!=="" ? fuse.search(this.state.filter) : this.state.ingredients.slice();
 
-        if(this.state.name.up) {
-            this.sort(result, "name", false)
-        }
-        if(this.state.name.down) {
-            this.sort(result, "name", true)
-        }
-        if(this.state.date.up) {
-            this.sort(result, "date", false)
-        }
-        if(this.state.date.down) {
-            this.sort(result, "date", true)
+
+        switch(this.state.sortBy){
+            case 'nameup':
+                sort(result, "name", false);
+                break;
+            case 'namedown':
+                sort(result, "name", true);
+                break;
+            case 'dateup':
+                sort(result, "date", false);
+                break;
+            case 'datedown':
+                sort(result, "date", true);
+                break;
+            default :
+                break;
         }
 
         if (result.length > 0) {
@@ -81,15 +94,6 @@ class IngredientPage extends Component {
 
     }
 
-    sort = (array, property, reverse) => {
-        if (reverse) {
-            array = array.sort((val1, val2)=>val1[property] > val2[property]);
-        } else {
-            array = array.sort((val1, val2)=>val1[property] < val2[property]);
-        }
-        return array;
-    }
-
     updateFilter = (filter) => {
         this.setState({filter});
     }
@@ -97,14 +101,14 @@ class IngredientPage extends Component {
     toggleSort = (e) => {
         const property = e.target.getAttribute("property");
         const className = e.target.className;
-        const state = {name : { 'up' : 0, 'down' : 0 },
-            date : { 'up' : 0, 'down' : 0 }};
-        state[property][className] = this.state[property][className] ? 0 : 1;
-        this.setState(state);
+        const sortBy = property + className
+        if(this.state.sortBy === sortBy) {
+            this.setState({sortBy: null});
+        }
+        else{
+            this.setState({sortBy});
+        }
     }
-
-
 }
-
 
 export default IngredientPage;
