@@ -15,3 +15,8 @@ div {
 .vertical-align > * {
     vertical-align:middle;
 }
+
+
+.addIngFlex > * {
+    margin: 10px;
+}

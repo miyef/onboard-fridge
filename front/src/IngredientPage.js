@@ -53,7 +53,7 @@ class IngredientPage extends Component {
                     'textAlign':'center'
                 }} className="vertical-align">
                     <FilterBar updateFilter={ this.updateFilter } />
-                    <AddButton/>
+                    <AddButton nav={this.props.nav} />
                 </div>
                 <SortBar toggleSort={ this.toggleSort } sortBy={ this.state.sortBy }/>
                 { this.displayIngredients(this.state.filter) }

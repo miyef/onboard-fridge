@@ -6,6 +6,6 @@ export default (props) => {
             'width' : '25px',
             'display':'inline-block',
             'paddingLeft' : '20px'}}
-             src="./plus-button.svg" alt="Add"/>
+                src="./plus-button.svg" alt="Add" onClick={props.nav}/>
     );
 }
