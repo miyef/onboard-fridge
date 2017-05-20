@@ -1,7 +1,7 @@
 import React from 'react';
 
 export default (props) => {
-    return <div style={{ borderStyle :'solid',
+    return <div className="menu-item" style={{ borderStyle :'solid',
     margin :'10px 13px 10px 13px', padding : '10px', paddingLeft:'5%', display:'flex',
         justifyContent : 'space-between' }}>
         <div style={{
@@ -12,16 +12,16 @@ export default (props) => {
         }}>
             <span style={{
                 width : '100px'
-            }}> { props.ingredient.name } </span>
+            }} className="ingredient-name"> { props.ingredient.name } </span>
             <span style={{
-                width : '73px'
+                width : '80px'
             }} > { props.ingredient.date.format('D/M/YYYY') } </span>
             <span style={{
                 width : '150px'
-            }}> { props.ingredient.tags.toString() } </span>
+            }} className="tags"> { props.ingredient.tags.toString() } </span>
         </div>
         <img style={{ cursor: 'pointer',
             width : '25px', height : '25px', alignSelf : 'center'}}
-             src="./minus-button.svg" alt="Delete"/>
+             src="./minus-button.png" alt="Delete"/>
     </div>
 }

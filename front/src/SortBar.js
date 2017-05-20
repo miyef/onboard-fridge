@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 
 const ArrowSelector  = (props) =>{
@@ -11,12 +11,14 @@ const ArrowSelector  = (props) =>{
                      style={arrowUpStyle}
                      className="up" onClick={ props.toggleSort }
                      property={ props.property }
+                     alt="up"
                     />
 
                 <img src={props.sortBy === `${props.property}down` ? "./arrow-expand-active.png": "./arrow-expand.png"}
                      style={arrowDownStyle}
                      className="down" onClick={ props.toggleSort }
                      property={ props.property }
+                     alt="down"
                      />
 
             </div>;
@@ -39,7 +41,7 @@ export default (props) => {
                 </div>
 
                 <div style={{
-                    width : '73px', display : 'flex', alignItems : 'center'
+                    width : '80px', display : 'flex', alignItems : 'center'
                 }}> <span>Date</span> <ArrowSelector property="date" toggleSort={props.toggleSort} sortBy={props.sortBy}/>
                 </div>
 

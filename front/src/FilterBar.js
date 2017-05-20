@@ -12,7 +12,7 @@ class FilterBar extends Component {
     render(){
         return <input type="text" value={this.state.value} onChange={ this.updateValue }
         placeholder="Filter by..." style={{'display':'inline-block',
-        'width': '70%'}}/>;
+        'width': '69%'}}/>;
     }
 
     updateValue = (e) =>  {

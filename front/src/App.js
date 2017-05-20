@@ -16,7 +16,7 @@ class App extends Component {
     render() {
     return (
       <div className="App">
-        <p style={ {fontSize : '24px', textAlign: 'center'} }>
+        <p style={ {fontSize : '25px', textAlign: 'center'}} className="app-bar">
           ON-BOARD FRIDGE
         </p>
           { this.state.currentPage === ingredientPage ? < IngredientPage nav={this.navigateToAddIngredient}/> : < AddIngredientPage nav={this.navigateToIngredientPage}/> }

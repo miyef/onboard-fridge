@@ -37,7 +37,7 @@ class IngredientPage extends Component {
             ingredients : [
                 {name: "Olives", tags:['Pizza', 'Snack'], date : moment([2012, 4, 7])},
                 {name: "Apple", tags:['Fruit', 'Dessert'],  date : moment([2012, 0, 31]) },
-                {name: "Banana", tags:['Fruit', 'Dessert'],  date : moment([2017, 0, 31]) },
+                {name: "Banana", tags:['Fruit', 'Dessert'],  date : moment([2017, 11, 31]) },
                 {name: "Pizza Crust", tags:['Pizza', 'Main'],  date : moment([2012, 0, 11])}
             ],
             filter : "",
@@ -50,13 +50,17 @@ class IngredientPage extends Component {
                 <div style={{
                     'margin': 'auto',
                     'width': '70%',
-                    'textAlign':'center'
+                    'textAlign':'center',
+                    'marginTop': '30px'
                 }} className="vertical-align">
                     <FilterBar updateFilter={ this.updateFilter } />
                     <AddButton nav={this.props.nav} />
                 </div>
-                <SortBar toggleSort={ this.toggleSort } sortBy={ this.state.sortBy }/>
-                { this.displayIngredients(this.state.filter) }
+                <div className="ingredient-list">
+                    <SortBar toggleSort={ this.toggleSort } sortBy={ this.state.sortBy }/>
+                    { this.displayIngredients(this.state.filter) }
+                </div>
+
             </div>);
     }
 
@@ -90,7 +94,7 @@ class IngredientPage extends Component {
             return result.map((ingredient)=><IngredientItem ingredient={ingredient} key={ingredient.name}/>);
         }
 
-        return <p> No ingredients found, sorry. </p>
+        return <p style={{padding : "20px"}}> No ingredients found, sorry. </p>
 
     }
 

@@ -1,5 +1,87 @@
 body {
-  margin: 0;
-  padding: 0;
-  font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+.react-tagsinput-tag {
+  background-color: #c8d694;
+  color: white;
+  border : none;
+}
+
+.react-tagsinput{
+    border-radius: 5px;
+}
+
+.orange-button {
+  border-style: solid;
+  border-width: 1px;
+  color: darkorange;
+}
+
+.App {
+    font-size: 16px;
+    color: #ffb955;
+}
+
+.app-bar{
+    background-color: #ffe4be;
+    margin : 0;
+    padding: 20px;
+    margin-bottom: 9px;
+    color: white;
+    background-color: #ffb955;
+    font-family: 'Rubik Mono One', sans-serif;
+}
+
+.menu-item {
+    color: #96927c;
+    border-color: #ffe4be;
+    background-color: white;
+    border-radius: 10px;
+    border-width: 2px;
+}
+
+.button{
+    color: white;
+    background-color: #ffb955;
+    border-radius: 5px;
+}
+
+.ingredient-name{
+    font-weight: 600;
+}
+
+.tags {
+    font-style: italic;
+    font-size: 15px;
+    color: #c8d694;
+}
+
+input {
+    font-size: inherit;
+    font-family: inherit;
+    border-style: none;
+    height: 20px;
+    padding: 5px 10px 5px 10px;
+    border-color: #ffe4be;
+    background-color: white;
+    border-radius: 5px;
+    border-width: 2px;
+    border-style: solid;
+}
+
+
+
+@media (min-width: 700px) {
+    .ingredient-list{
+        width: 70%;
+        margin: auto;
+    }
+}
+
+@media (min-width: 1000px) {
+    .ingredient-list{
+        width: 60%;
+    }
 }
