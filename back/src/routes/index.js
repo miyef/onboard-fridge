@@ -1,9 +1,13 @@
-import Router from 'koa-router';
+const Router = require('koa-router');
+const Auth = require('./auth/auth.route');
 
 const router = new Router();
 
 router.get('/health-check', (ctx) => {
-    ctx.body="OK";
+    ctx.body = 'OK';
 });
 
-export default router;
+router.use('/auth', Auth.routes(), Auth.allowedMethods());
+
+module.exports = exports = router;
+
