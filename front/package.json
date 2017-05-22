@@ -12,7 +12,7 @@
     "react-tagsinput": "^3.16.1"
   },
   "devDependencies": {
-    "react-scripts": "^1.0.2"
+    "react-scripts": "1.0.5"
   },
   "scripts": {
     "start": "react-scripts start",

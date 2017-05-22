@@ -4864,7 +4864,7 @@ react-onclickoutside@^5.11.1:
   dependencies:
     create-react-class "^15.5.x"
 
-react-scripts@^1.0.2:
+react-scripts@1.0.5:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/react-scripts/-/react-scripts-1.0.5.tgz#36e7302f4be16c6511f3b50a7a7bad4b2da5cb02"
   dependencies:
