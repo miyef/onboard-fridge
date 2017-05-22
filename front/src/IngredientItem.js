@@ -18,7 +18,7 @@ export default (props) => {
             }} > { props.ingredient.date.format('D/M/YYYY') } </span>
             <span style={{
                 width : '150px'
-            }} className="tags"> { props.ingredient.tags.toString() } </span>
+            }} className="tags"> { props.ingredient.tags.map((val, idx)=>` ${val}`).toString() } </span>
         </div>
         <img style={{ cursor: 'pointer',
             width : '25px', height : '25px', alignSelf : 'center'}}
