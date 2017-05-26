@@ -1,20 +1,13 @@
 module.exports = {
+  rules: {
+    indent: 'off',
+    'no-param-reassign': 0,
+  },
 
-    "rules": {
-        "indent": [
-            2,
-            4,
-        ],
-        "no-param-reassign": 0,
-    },
+  env: {
+    node: true,
+    jasmine: true,
+  },
 
-    "env": {
-        "node": true,
-        "jasmine": true,
-    },
-
-    "extends": [
-        "airbnb-base",
-    ],
-
+  extends: ['airbnb-base'],
 };
