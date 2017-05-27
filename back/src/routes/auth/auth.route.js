@@ -11,4 +11,3 @@ router.get('/login', login);
 router.get('/callback', callback);
 
 module.exports = router;
-
