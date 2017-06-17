@@ -1,3 +1,13 @@
+/**
+ * @fileoverview Koa application configuration
+ * @module App
+ * @author Nayef Ghattas
+ */
+
+// ------------------------------------------------------------------------------
+// Requirements
+// ------------------------------------------------------------------------------
+
 const Koa = require('koa');
 const morgan = require('koa-morgan');
 const bodyParser = require('koa-bodyparser');
@@ -9,33 +19,55 @@ const crypto = require('crypto');
 const { config } = require('dotenv');
 const router = require('./routes');
 
-const app = new Koa();
-
-config();
-
 const debug = require('debug')('onboard-fridge');
 
+// ------------------------------------------------------------------------------
+// Basic configuration
+// ------------------------------------------------------------------------------
+
+const app = new Koa();
+
+// Load configuration
+config();
+
+// Initialize session secret
 app.keys = [process.env.SESSION_SECRET];
 
-app.use(compress());
-app.use(session({ key: 'onboard-fridge' }, app));
-app.use(async (ctx, next) => {
-    if (ctx.session.isNew) {
-        const randomBytes = await new Promise((resolve) => {
-            crypto.randomBytes(256, (err, buf) => {
-                resolve(buf.toString('hex'));
-            });
-        });
-        ctx.session.key = randomBytes;
-    }
-    await next();
-});
-app.use(app.env === 'development' ? morgan('dev') : morgan('combined'));
-app.use(bodyParser());
-app.use(helmet());
-app.use(cors());
+// ------------------------------------------------------------------------------
+// Loading middlewares and routes
+// ------------------------------------------------------------------------------
 
-app.use(router.routes(), router.allowedMethods());
+app
+    // Gzip response
+    .use(compress())
+    // Initialize session
+    .use(session({ key: 'onboard-fridge' }, app))
+    // Add session key
+    .use(async (ctx, next) => {
+        if (ctx.session.isNew) {
+            ctx.session.key = await new Promise((resolve) => {
+                crypto.randomBytes(256, (err, buf) => {
+                    resolve(buf.toString('hex'));
+                });
+            });
+        }
+        await next();
+    })
+    // Start appropriate logger
+    .use(app.env === 'development' ? morgan('dev') : morgan('combined'))
+    // Parse request body
+    .use(bodyParser())
+    // Use some security defaults
+    .use(helmet())
+    // Use cors
+    .use(cors());
+
+// Load all router
+app.use(router.routes()).use(router.allowedMethods());
+
+// ------------------------------------------------------------------------------
+// Bind server on port
+// ------------------------------------------------------------------------------
 
 debug('Starting server on port 3000');
 app.listen(3000);
