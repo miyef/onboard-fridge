@@ -15,21 +15,18 @@ function login(ctx) {
 
 async function callback(ctx) {
     if (ctx.session.key === ctx.query.state) {
-        const response = await request
-            .post('https://my.ecp.fr/oauth/v2/token')
-            .form({
-                code: ctx.query.code,
-                client_id: process.env.MYECP_CLIENT_ID,
-                client_secret: process.env.MYECP_CLIENT_SECRET,
-                grant_type: 'authorization_code',
-                state: 'test',
-                redirect_uri: 'http://localhost:3000/auth/callback',
-            });
+        const response = await request.post('https://my.ecp.fr/oauth/v2/token').form({
+            code: ctx.query.code,
+            client_id: process.env.MYECP_CLIENT_ID,
+            client_secret: process.env.MYECP_CLIENT_SECRET,
+            grant_type: 'authorization_code',
+            state: 'test',
+            redirect_uri: 'http://localhost:3000/auth/callback',
+        });
         const { access_token } = JSON.parse(response);
-        const apiResponse = await request
+        ctx.body = await request
             .get('https://my.ecp.fr/api/v1/members/me')
             .auth(null, null, true, access_token);
-        ctx.body = apiResponse;
     } else {
         ctx.body = 'Incorrect State';
     }

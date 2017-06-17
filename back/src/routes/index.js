@@ -9,5 +9,4 @@ router.get('/health-check', (ctx) => {
 
 router.use('/auth', Auth.routes(), Auth.allowedMethods());
 
-module.exports = exports = router;
-
+module.exports = router;
