@@ -7,7 +7,6 @@ const router = new Router();
 router.get('/login', login);
 
 /** GET /auth/callback - Redirect to MyECP for authentication */
-// same as router.get('callback', authCtrl.callback);
 router.get('/callback', callback);
 
 module.exports = router;
